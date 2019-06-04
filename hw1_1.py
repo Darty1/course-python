@@ -1,5 +1,4 @@
-print ('input str: ')
-s = str(input())
+s = str(input('input str: '))
 l = len(s) - 1
 i = 0
 t = False
@@ -10,5 +9,7 @@ while i < l/2:
     else:
         t = False
         break
-if t: print ('s is polindrom')
-else: print('s is not polindrom')
+if t:
+    print ('s is polindrom')
+else:
+    print('s is not polindrom')
