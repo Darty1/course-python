@@ -81,7 +81,7 @@ for i in range(0, l):
             kd += 1
         s[i - kn + 1] = num + div
 
-print (s)
+print ('s = ',s)
 
 
 
