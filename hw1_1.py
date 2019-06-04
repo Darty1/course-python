@@ -10,6 +10,6 @@ while i < l/2:
         t = False
         break
 if t:
-    print ('s is polindrom')
+    print ('s is palindrom')
 else:
-    print('s is not polindrom')
+    print('s is not palindrom')
