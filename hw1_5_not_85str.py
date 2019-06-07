@@ -43,8 +43,8 @@ for i in range(0, l):
             div = div * 10 + int(s[i + kd])
             del s[i + kd]
             kd += 1
-        if temp == '+': s[i-kn+1]=num+div
-        else: s[i-kn+1]=num-div
+        if temp == '+': s[i-kn+1] = num+div
+        else: s[i-kn+1] = num-div
 print ('s = ',s)
 
 
