@@ -11,7 +11,6 @@ while True:
     else:
         tokens += float(s),
         break
-
 i = 1
 while i < len(tokens) - 1:
     token = tokens[i]
