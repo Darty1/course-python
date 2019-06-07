@@ -11,6 +11,10 @@ while True:
     else:
         tokens += float(s),
         break
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 i = 1
 while i < len(tokens) - 1:
     token = tokens[i]
