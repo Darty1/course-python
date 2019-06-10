@@ -1,6 +1,5 @@
 import random as rand
 
-
 n = rand.randint(1, 10)
 
 k = input('guess, please: ')
