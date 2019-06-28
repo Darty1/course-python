@@ -31,21 +31,31 @@ def make_turn(L, xx, yy, player):
     return temp
 
 def check_win(L, i, j, play):
-    while True:
-        k = 1
-        if k > 2:
-            print(play,' - win')
+    while tr:
+        if i - 1 + k > 2 or j - 1 + k > 2:
+            k = -1
+        if L[i - 1 + k][j - 1] == play:
+            k += 1
+            st += 1
+            continue
+        elif L[i - 1][j - 1 + k] == play:
+            st += 1
+            k += 1
+            continue
+        elif L[i - 1 + k][j - 1 + k] == play:
+            st += 1
+            k += 1
+            continue
+        else:
+            tr = False
+            p = False
             break
-            return True
-        if L[i-1+k][j-1] == play:
-            k += 1
-            continue
-        elif L[i-1][j-1+k] == play:
-            k += 1
-            continue
-        elif L[i-1+k][j-1+k] == play:
-            k += 1
-            continue
+        if st == 3:
+            print(play, ' - win')
+            break
+            tr = False
+            p = True
+            return tr
     return False
 def check_draw(L):
     print(':(')
