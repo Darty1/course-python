@@ -100,8 +100,6 @@ def check_draw(L):
 
 
 
-
-
 fool = '|  '
 a = 0
 b = 0
