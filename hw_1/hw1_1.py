@@ -9,6 +9,15 @@ while i < l/2:
     else:
         t = False
         break
+
+# можно было написать:
+# t = True
+# for i in range(l // 2):
+#     if s[i] != s[l - i]:
+#         t = False
+#         break
+# результат тот же, но выглядит куда проще
+
 if t:
     print ('s is palindrom')
 else:
