@@ -1,0 +1,12 @@
+ {
+    "type": "seed",
+    "quantity": 10
+  },
+  {
+    "type": "meat",
+    "quantity": 6
+  },
+  {
+    "type": "fish",
+    "quantity": 2
+  }

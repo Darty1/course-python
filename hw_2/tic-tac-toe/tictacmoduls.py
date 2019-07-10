@@ -11,7 +11,7 @@ def print_grid(Ll):
 
 def make_turn(L, xx, yy, player):
     fool = '|  '
-    print(player, ' - move ')
+    print(player, " - move ")
     xx = int(input('input x: '))
     yy = int(input('input y: '))
     if 1 > xx > 3 or 1 > yy > 3:
@@ -71,7 +71,6 @@ def check_win(L, i, j, play):
                 print(play, ' - win')
                 p = True
                 break
-
     return p
 
 
