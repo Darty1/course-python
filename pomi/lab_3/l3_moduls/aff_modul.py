@@ -18,12 +18,12 @@ def a_inp():
 
 
 def a_im_read():
-    p = "D:/student_projects/lesson_1/pomi/lab_3/" + input("Input File Name: ") + ".jpg"
+    p = input("Input File Name: ") + ".jpg"
     try:
         img = cv2.imread(p, 0)
     except:
         while cv2.imread(p, 0) is FileNotFoundError:
-            p = "D:/student_projects/lesson_1/pomi/lab_3/" + input("Input File Name: ") + ".jpg"
+            p = input("Input File Name: ") + ".jpg"
     finally:
         cv2.imshow('img_before', img)
         return img
