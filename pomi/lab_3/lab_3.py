@@ -19,7 +19,14 @@ while n != 0:
     if n == 4:
         a = a_inp()
         if a == 1:
-            translation()
+            translation(int(input("x = ")), int(input("y = ")))
+        if a == 2:
+            scalling(float(input("fx = ")), float(input("fy = ")))
+        if a == 3:
+            rotation(int(input("gradus = ")))
+        if a == 4:
+            sdvig(float(input("x = ")), float(input("y = ")))
+
     if n == 7:
         try:
             name_1 = input("File name: ")
