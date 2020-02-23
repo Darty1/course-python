@@ -2,9 +2,9 @@ from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 from affine import Affine
 import string
-from pomi.lab_3.l3_moduls.l3_modul import *
-from pomi.lab_3.l3_moduls.aff_modul import *
-#import cv2
+from l3_moduls.aff_modul import *
+from l3_moduls.l3_modul import *
+import cv2
 import numpy as np
 n = 9
 while n != 0:
@@ -41,6 +41,14 @@ while n != 0:
             print("File not found")
         except NameError:
             print('Сначала сохраните файл')
+    if n == 6:
+        n = input("Имя файла: ")
+        try:
+            im = cv2.imread(n, 0)
+        except FileNotFoundError:
+            print("File not found")
+        else:
+            show_chanel(n)
 
 
 
