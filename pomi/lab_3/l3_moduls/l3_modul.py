@@ -2,7 +2,8 @@ from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 from affine import Affine
 import string
-
+import cv2
+import numpy as np
 
 def inp():
     n = int(input("""
@@ -20,13 +21,11 @@ def inp():
 
 
 def read_im():
-    name = "D:/student_projects/lesson_1/pomi/lab_3/" + input("Input File Name: ") + ".jpg"
-    print(name)
+    name = input("Input File Name: ") + ".jpg"
     try:
         im = Image.open(open(name, 'rb'))
     except FileNotFoundError:
         print("File not found")
-
     return im
 
 
@@ -55,4 +54,28 @@ def gray(im):
                 draw.point((i, j), (S, S, S))
         del draw
     return im
+
+
+def show_chanel(n):
+    src = cv2.imread(n, cv2.IMREAD_UNCHANGED)
+    print(src.shape)
+    red_channel = src[:, :, 2]
+    red_img = np.zeros(src.shape)
+    red_img[:, :, 2] = red_channel
+    cv2.imwrite('r.jpg', red_img)
+    im = Image.open('r.jpg')
+    im.show()
+    green_channel = src[:, :, 1]
+    green_img = np.zeros(src.shape)
+    green_img[:, :, 1] = green_channel
+    cv2.imwrite('g.jpg', green_img)
+    im = Image.open('g.jpg')
+    im.show()
+    blue_channel = src[:, :, 0]
+    blue_img = np.zeros(src.shape)
+    blue_img[:, :, 0] = blue_channel
+    cv2.imwrite('b.jpg', blue_img)
+    im = Image.open('b.jpg')
+    im.show()
+
 
