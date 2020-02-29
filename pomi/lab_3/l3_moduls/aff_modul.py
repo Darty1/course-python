@@ -4,6 +4,7 @@ from affine import Affine
 import string
 import numpy as np
 import cv2
+import easygui
 
 
 def a_inp():
@@ -18,19 +19,13 @@ def a_inp():
 
 
 def a_im_read():
-    p = input("Input File Name: ") + ".jpg"
-    try:
-        img = cv2.imread(p, 0)
-    except:
-        while cv2.imread(p, 0) is FileNotFoundError:
-            p = input("Input File Name: ") + ".jpg"
-    finally:
-        cv2.imshow('img_before', img)
-        return img
+    filename = str(easygui.fileopenbox())
+    image = cv2.imread(filename, 0)
+    return image
 
 
-def translation(x, y):
-    img = a_im_read()
+def translation(f, x, y):
+    img = cv2.imread(f, 0)
     rows, cols = img.shape
     M = np.float32([[1, 0, -x], [0, 1, -y]])
     dst = cv2.warpAffine(img, M, (cols, rows))
@@ -39,8 +34,8 @@ def translation(x, y):
     cv2.destroyAllWindows()
 
 
-def rotation(r):
-    img = a_im_read()
+def rotation(f, r):
+    img = cv2.imread(f, 0)
     rows, cols = img.shape
     M = cv2.getRotationMatrix2D((cols / 2, rows / 2), r, 1)
     dst = cv2.warpAffine(img, M, (cols, rows))
@@ -49,15 +44,15 @@ def rotation(r):
     cv2.destroyAllWindows()
 
 
-def scalling(fx, fy):
-    img = a_im_read()
+def scalling(f, fx, fy):
+    img = cv2.imread(f, 0)
     img_scaled = cv2.resize(img, None, fx=fx, fy=fy, interpolation=cv2.INTER_LINEAR)
     cv2.imshow('Scaling - Skewed Size', img_scaled)
     cv2.waitKey()
 
 
-def sdvig(x, y):
-    img = a_im_read()
+def sdvig(f, y):
+    img = cv2.imread(f, 0)
     rows, cols = img.shape[:2]
     src_points = np.float32([[0, 0], [cols - 1, 0], [0, rows - 1]])
     dst_points = np.float32([[0, 0], [int(x * (cols - 1)), 0], [int(y * (cols - 1)), rows - 1]])

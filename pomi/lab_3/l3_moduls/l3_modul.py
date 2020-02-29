@@ -25,7 +25,7 @@ def inp():
 def loadImage():
     filename = str(easygui.fileopenbox())
     im = Image.open(filename)
-    return im
+    return im, filename
 
 
 def read_im():
@@ -37,14 +37,14 @@ def read_im():
     return im
 
 
-def saveImage(image):
+def saveImage(im):
     filename = easygui.filesavebox(msg="Save")
     print(filename)
-    image.save(filename+'.jpg')
+    im.save(filename+'.jpg')
 
 
-def viewImage(image):
-    image.show()
+def viewImage(im):
+    im.show()
 
 
 def show_im(im):
@@ -81,20 +81,20 @@ def show_chanel(n):
     red_img = np.zeros(src.shape)
     red_img[:, :, 2] = red_channel
     cv2.imwrite('r.jpg', red_img)
-    im = Image.open('r.jpg')
-    im.show()
+    r = Image.open('r.jpg')
+    r.show()
     green_channel = src[:, :, 1]
     green_img = np.zeros(src.shape)
     green_img[:, :, 1] = green_channel
     cv2.imwrite('g.jpg', green_img)
-    im = Image.open('g.jpg')
-    im.show()
+    g = Image.open('g.jpg')
+    g.show()
     blue_channel = src[:, :, 0]
     blue_img = np.zeros(src.shape)
     blue_img[:, :, 0] = blue_channel
     cv2.imwrite('b.jpg', blue_img)
-    im = Image.open('b.jpg')
-    im.show()
-
+    b = Image.open('b.jpg')
+    b.show()
+    return r, g, b
 
 
