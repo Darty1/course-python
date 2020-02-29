@@ -4,6 +4,8 @@ from affine import Affine
 import string
 import cv2
 import numpy as np
+import easygui
+
 
 def inp():
     n = int(input("""
@@ -20,6 +22,12 @@ def inp():
     return n
 
 
+def loadImage():
+    filename = str(easygui.fileopenbox())
+    im = Image.open(filename)
+    return im
+
+
 def read_im():
     name = input("Input File Name: ") + ".jpg"
     try:
@@ -27,6 +35,16 @@ def read_im():
     except FileNotFoundError:
         print("File not found")
     return im
+
+
+def saveImage(image):
+    filename = easygui.filesavebox(msg="Save")
+    print(filename)
+    image.save(filename+'.jpg')
+
+
+def viewImage(image):
+    image.show()
 
 
 def show_im(im):
@@ -77,5 +95,6 @@ def show_chanel(n):
     cv2.imwrite('b.jpg', blue_img)
     im = Image.open('b.jpg')
     im.show()
+
 
 

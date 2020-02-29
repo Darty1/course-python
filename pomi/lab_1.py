@@ -1,4 +1,4 @@
-c = 0
+ = 0
 while c != 3:
     c = int(input("""
                         What do you choose?

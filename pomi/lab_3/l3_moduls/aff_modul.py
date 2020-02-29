@@ -32,7 +32,7 @@ def a_im_read():
 def translation(x, y):
     img = a_im_read()
     rows, cols = img.shape
-    M = np.float32([[1, 0, x], [0, 1, y]])
+    M = np.float32([[1, 0, -x], [0, 1, -y]])
     dst = cv2.warpAffine(img, M, (cols, rows))
     cv2.imshow('img_after', dst)
     cv2.waitKey(0)

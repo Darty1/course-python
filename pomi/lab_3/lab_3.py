@@ -6,16 +6,16 @@ from l3_moduls.aff_modul import *
 from l3_moduls.l3_modul import *
 import cv2
 import numpy as np
+import easygui
 n = 9
 while n != 0:
     n = inp()
     if n == 1:
-        im = read_im()
+        im = loadImage()
     if n == 2:
-        show_im(im)
+        viewImage(im)
     if n == 3:
         gray(im)
-
     if n == 4:
         a = a_inp()
         if a == 1:
@@ -29,26 +29,23 @@ while n != 0:
 
     if n == 7:
         try:
-            name_1 = input("File name: ")
-            im.save(name_1)
+            saveImage(im)
         except NameError:
             print('Сначала преобразуйте файл')
     if n == 5:
         try:
-            im = Image.open(name_1)
-            im.show()
+            viewImage(im)
         except FileNotFoundError:
             print("File not found")
         except NameError:
             print('Сначала сохраните файл')
     if n == 6:
-        n = input("Имя файла: ")
         try:
             im = cv2.imread(n, 0)
         except FileNotFoundError:
             print("File not found")
-        else:
-            show_chanel(n)
+
+
 
 
 
