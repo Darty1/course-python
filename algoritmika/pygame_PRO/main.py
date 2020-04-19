@@ -22,23 +22,40 @@ run = True
 x2 = 0
 y2 = 0
 speed = 10
+isJump = False
+JumpCount = 10
 while run:
     time.delay(50)
     for e in event.get(): # List of events
         if e.type == QUIT:
             exit()
-        window.blit(background, (0, 0))
-        window.blit(img1, (x2, y2))
-        keys = key.get_pressed()
-        if keys[K_LEFT] and x2 > 5:
-            x2 -= speed
-        if keys[K_RIGHT] and x2 < 595:
-            x2 += speed
+    window.blit(background, (0, 0))
+    window.blit(img1, (x2, y2))
+    keys = key.get_pressed()
+    if keys[K_LEFT] and x2 > 5:
+        x2 -= speed
+    if keys[K_RIGHT] and x2 < 595:
+        x2 += speed
+    if not isJump:
         if keys[K_UP] and y2 > 5:
             y2 -= speed
         if keys[K_DOWN] and y2 < 395:
             y2 += speed
-        display.update()
+        if keys[K_SPACE]:
+            isJump = True
+    else:
+        if JumpCount >= -10:
+            if JumpCount < 0:
+                y2 += (JumpCount ** 2) / 2
+            else:
+                y2 -= (JumpCount ** 2) / 2
+            JumpCount -= 1
+        else:
+            isJump = False
+            JumpCount = 10
+
+
+    display.update()
 
         # if e.type == KEYDOWN: # Key is down
         #     if e.key == K_RIGHT:
@@ -52,4 +69,3 @@ while run:
     # window.blit(background, (0, 0)) # basckground
     # window.blit(img1, (x, y)) # sprite
     # display.update()
-time.delay(5000)
