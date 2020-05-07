@@ -23,38 +23,30 @@ def inp():
 
 
 def loadImage():
+    global filename
     filename = str(easygui.fileopenbox())
+    global im
     im = Image.open(filename)
     return im, filename
 
-
-def read_im():
-    name = input("Input File Name: ") + ".jpg"
-    try:
-        im = Image.open(open(name, 'rb'))
-    except FileNotFoundError:
-        print("File not found")
-    return im
-
-
-def saveImage(im):
+def saveImage():
     filename = easygui.filesavebox(msg="Save")
     print(filename)
     im.save(filename+'.jpg')
 
 
-def viewImage(im):
+def viewImage():
     im.show()
 
 
-def show_im(im):
+def show_im():
     try:
         im.show()
     except NameError:
         print("Open File, please")
 
 
-def gray(im):
+def gray():
     try:
         draw = ImageDraw.Draw(im)
     except NameError:
@@ -71,30 +63,36 @@ def gray(im):
                 S = (a + b + c) // 3
                 draw.point((i, j), (S, S, S))
         del draw
-    return im
 
 
-def show_chanel(n):
-    src = cv2.imread(n, cv2.IMREAD_UNCHANGED)
+def show_chanel():
+    src = cv2.imread(filename, cv2.IMREAD_UNCHANGED)
     print(src.shape)
     red_channel = src[:, :, 2]
     red_img = np.zeros(src.shape)
     red_img[:, :, 2] = red_channel
     cv2.imwrite('r.jpg', red_img)
+    global r
     r = Image.open('r.jpg')
     r.show()
     green_channel = src[:, :, 1]
     green_img = np.zeros(src.shape)
     green_img[:, :, 1] = green_channel
     cv2.imwrite('g.jpg', green_img)
+    global g
     g = Image.open('g.jpg')
     g.show()
     blue_channel = src[:, :, 0]
     blue_img = np.zeros(src.shape)
     blue_img[:, :, 0] = blue_channel
     cv2.imwrite('b.jpg', blue_img)
+    global b
     b = Image.open('b.jpg')
     b.show()
-    return r, g, b
 
+def save_channel():
+    filename = easygui.filesavebox(msg="Save")
+    r.save(filename+'_r.jpg')
+    g.save(filename + '_g.jpg')
+    b.save(filename + '_b.jpg')
 
