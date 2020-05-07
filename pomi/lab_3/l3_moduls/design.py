@@ -5,18 +5,9 @@ import l3_modul
 # import aff_modul
 
 
-def on_affine_button_click():
-    AffineLayout = QVBoxLayout()
-    translateButton = QPushButton("Перемещение")
-    rotateButton = QPushButton("Поворот")
-    scalingButton = QPushButton("Масштабирование")
-    sdvigButton = QPushButton("Сдвиг")
-    AffineLayout.addWidget(translateButton, alignment=Qt.AlignCenter)
-    AffineLayout.addWidget(rotateButton, alignment=Qt.AlignCenter)
-    AffineLayout.addWidget(scalingButton, alignment=Qt.AlignCenter)
-    AffineLayout.addWidget(sdvigButton, alignment=Qt.AlignCenter)
-    window.setLayout(AffineLayout)
-    window.show()
+class ButtonBlock(Qwidget):
+    super(QtGui.QWidget, self).__init__()
+    def __init__(self):
 
 app = QApplication([])
 window = QWidget()
@@ -47,10 +38,10 @@ layout5 = QHBoxLayout()
 AffinaLabelLayout = QHBoxLayout()
 AffineFormLayout = QHBoxLayout()
 AffineForm = QFormLayout()
-global x, y, r
-x_line = QLineEdit()
-y_line = QLineEdit()
+x_line = QLineEdit('0')
+y_line = QLineEdit('0')
 r_line = QLineEdit()
+x, y = 0, 0
 AffineForm.addRow(QLabel('x: '), x_line)
 AffineForm.addRow(QLabel('y: '), y_line)
 AffineForm.addRow(QLabel('r: '), r_line)
@@ -84,10 +75,21 @@ grayButton.clicked.connect(l3_modul.gray)
 showChannelButton.clicked.connect(l3_modul.show_chanel)
 saveChannelButton.clicked.connect(l3_modul.save_channel)
 saveButton.clicked.connect(l3_modul.saveImage)
-x = str(x_line.text())
-y = str(y_line.text())
-r = str(r_line.text())
-# translateButton.clicked.connect(l3_modul.translation(x, y))
+def p():
+    print('x =', int(x_line.text()), 'y = ', y_line.text(), 'r = ', r_line.text())
+
+def set_x(text):
+    global x
+    x = int(x_line.text())
+
+def set_y(text):
+    global y
+    print(text)
+    y = int(y_line.text())
+# translateButton.clicked.connect(p)
+x_line.textChanged.connect(set_x)
+y_line.textChanged.connect(set_y)
+translateButton.clicked.connect(l3_modul.translation(x, y))
 window.show()
 # app.setStyle("Fusion")
 app.exec_()

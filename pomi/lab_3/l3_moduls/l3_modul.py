@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import easygui
 
-
+global filename
 def inp():
     n = int(input("""
         1. чтение изображения
@@ -23,11 +23,11 @@ def inp():
 
 
 def loadImage():
-    global filename
     filename = str(easygui.fileopenbox())
     global im
     im = Image.open(filename)
-    return im, filename
+
+
 
 def saveImage():
     filename = easygui.filesavebox(msg="Save")
@@ -96,3 +96,27 @@ def save_channel():
     g.save(filename + '_g.jpg')
     b.save(filename + '_b.jpg')
 
+
+def a_im_read():
+    try:
+        filename = str(easygui.fileopenbox())
+        img = cv2.imread(filename, 0)
+    except:
+        while cv2.imread(filename, 0) is FileNotFoundError:
+            p = input("Input File Name: ") + ".jpg"
+    else:
+        cv2.imshow('img_before', img)
+    return img
+
+
+def translation(x, y):
+    def trans():
+        img = a_im_read()
+        rows, cols = img.shape
+        print(x, y)
+        M = np.float32([[1, 0, int(x)], [0, 1, int(y)]])
+        dst = cv2.warpAffine(img, M, (cols, rows))
+        cv2.imshow('img_after', dst)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+    return trans
